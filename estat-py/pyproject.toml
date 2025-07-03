@@ -1,0 +1,33 @@
+[build-system]
+requires = ["maturin>=1.5"]
+build-backend = "maturin"
+
+[project]
+name = "estat-py"
+version = "0.1.0"
+description = "Python bindings for the e-Stat Rust client"
+authors = [{ name = "Kenji Sato", email = "kenji@kenjisato.jp" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
+
+[tool.maturin]
+bindings = "pyo3"
+module-name = "estat_py"
+python-source = "python"
+
+[dependency-groups]
+dev = [
+    "maturin>=1.9.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=5.0.0",
+    "responses>=0.25.7",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=estat_py --cov-report=html --cov-report=term"
